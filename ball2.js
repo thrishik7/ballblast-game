@@ -16,6 +16,12 @@ var cannon = new Image();
 var blast = new Image();
 blast.src='blast.png'
 cannon.src='cannon.png';
+var letters = '0123456789ABCDEF';
+var color = '#';
+for (var i = 0; i < 6; i++) {
+color += letters[Math.floor(Math.random() * 16)];
+}
+
 var h =Math.floor((Math.random()*200)+40);
  var yc1=h;
 var t=2;
@@ -28,15 +34,16 @@ var k=2;
 var q=2;
 var dx=0;
 var dy=0;
-var time=1;
+var ti=0;
 var dr=0;
 var score=0;
 var g=0;
 var w=1;var w1=1;
+var t3=1;
 var bulletArray=[];
 var bubbleArray=[];
 var scoreArray=[];
-var k1=0;
+var k1=1; var k2=0;
 var Maxb=2;var Maxb1=1;
 var SCORE=0;
 var w2=0;
@@ -55,55 +62,53 @@ gameendpic.src='gameovergif.gif';
 
 function animateblock()
 { 
- 
-        
-      
-       cancelMe=requestAnimationFrame(animateblock);
-  
-      
- 
-       c.clearRect(0,0, innerWidth, innerHeight);
-       document.getElementById("bmi").innerHTML="HIGH SCORE:"+SCORE;  
-       window.addEventListener('keydown',move,false);
+     cancelMe=requestAnimationFrame(animateblock);
+     c.clearRect(0,0, innerWidth, innerHeight);
+     document.getElementById("bmi").innerHTML="HIGH SCORE:"+SCORE;  
+     window.addEventListener('keydown',move,false);
+     c.fillStyle="orange"; 
+     c.fillStyle="black";c.fillStyle="black";
+     c.drawImage(cannon,xc,565);
 
-
-     c.fillStyle="#ffffff";
-
-    c.fillStyle="black";
-      c.drawImage(cannon,xc,565);
-
-w++;
-if(w==20)
+    w=w+t3;
+    k2=10
+    if(w>=30)
+    {
+     Maxb++; 
+     if(bulletArray.length<Maxb)
+     {
+      bulletArray.push({x:xc+40, y:yb, rb: 5 });
+     }
+    w=1;
+    if(k1%500==0)
 {
-   Maxb++; 
-  if(bulletArray.length<Maxb)
-  {
-    bulletArray.push({x:xc+40, y:yb, rb: 5 });
-  }
-
-w=1;
+  t3++;
 }
-w1++;
-    
-if(w1==700)
-{
-Maxb1++; 
-     if(bubbleArray.length<Maxb1)
-  {
 
-  
+    }
+    w1++;
+    if(w1==700)
+   {
+    Maxb1++; 
+    if(bubbleArray.length<Maxb1)
+   {
 
-   r=Math.floor((Math.random() * 50) + 30);
-
-    s= Math.floor((Math.random() * 120) + 20);
-    if(s%2!=0)
+     r=Math.floor((Math.random() * 50) + 30);
+     s= Math.floor((Math.random() * 120) + 20);
+     if(s%2!=0)
       s++;
+     h=Math.floor((Math.random()*200)+40);
+      yc1=h;
+      t=2;
+      xc1=0;
+      a=1;b=1; 
+      letters = '0123456789ABCDEF';
+      color = '#';
+    for (var i = 0; i < 6; i++) {
+   color += letters[Math.floor(Math.random() * 16)];
+}  
 
-    h=Math.floor((Math.random()*200)+40);
-    yc1=h;
-    t=2;
-    xc1=0;
-   a=1;b=1;  bubbleArray.push({x1:xc1, y1:yc1, r1: r ,s1:s , t1:t, h11:h, a1:a, b1:b});
+    bubbleArray.push({x1:xc1, y1:yc1, r1: r ,s1:s , t1:t, h11:h, a1:a, b1:b, color1:color});
     scoreArray.push({s1:s });
   }w1=1;}
 
@@ -112,10 +117,10 @@ Maxb1++;
  for(var i=0; i<bubbleArray.length;i++){
    c.beginPath();
    c.arc(bubbleArray[i].x1, bubbleArray[i].y1,bubbleArray[i].r1, 0, Math.PI * 2, false); 
-    c.fillStyle = 'red';
+    c.fillStyle = bubbleArray[i].color1;
     c.fill();
     c.fillStyle="#ffffff"; c.font='30px Helvetica';
-   c.fillText(bubbleArray[i].s1,bubbleArray[i].x1,bubbleArray[i].y1);
+   c.fillText(bubbleArray[i].s1,(bubbleArray[i].x1)-20,(bubbleArray[i].y1)+5);
  bubbleArray[i].x1+=bubbleArray[i].b1*bubbleArray[i].t1;
 h1=bubbleArray[i].h11-20;
 bubbleArray[i].y1+=bubbleArray[i].a1*Math.pow(bubbleArray[i].t1,2);
@@ -198,57 +203,30 @@ for(var i=0; i<bubbleArray.length;i++){
    b1=1;
    bubbleArray.splice(i,1);
    scoreArray.splice(i,1);
- 
+ letters = '0123456789ABCDEF';
+color = '#';
+for (var i = 0; i < 6; i++) {
+color += letters[Math.floor(Math.random() * 16)];
+}
     
-  bubbleArray.push({x1:xc1, y1:yc1, r1: r ,s1:s , t1:t, h11:h, a1:a, b1:b});
+  bubbleArray.push({x1:xc1, y1:yc1, r1: r ,s1:s , t1:t, h11:h, a1:a, b1:b , color1:color});
   scoreArray.push({s1:s });
-  bubbleArray.push({x1:xc11, y1:yc11, r1: r1,s1:s1 , t1:t1, h11:h1, a1:a1, b1:b1});
+  bubbleArray.push({x1:xc11, y1:yc11, r1: r1,s1:s1 , t1:t1, h11:h1, a1:a1, b1:b1, color1:color});
   scoreArray.push({s1:s1 });
-  k1++;
+ 
  }
   else
     { bubbleArray.splice(i,1);
       console.log(bubbleArray.length);
       scoreArray.splice(i,1);
-      k1++;
+     
     }}
   score+=4; 
-
+  k1+=4;
        }
 
     
 }}
-
-
-
-//if(k1==1)
-//{
-  //w2++;
-  //if(w2<=20)
-  //{
-   // c.drawImage(blast,200,200);
-
-  //}
-//else
-  //{w2=0;
-  //k1=0;}
-
-
-
-//}
-
-if(score%500==0){
-time+=1;}
-
-
-
-
-
-
-
-
-
-
 
 for(var i=0; i<bubbleArray.length;i++){
 
@@ -292,6 +270,8 @@ c.fillStyle="#ffffff";
 
 
 
+
+
 }
 
   
@@ -330,15 +310,15 @@ blast = new Image();
 blast.src='blast.png'
 cannon.src='cannon.png'; h =Math.floor((Math.random()*200)+40);
  yc1=h;
-t=2;
+t=2;t3=0;
 i=0;
 d=620;
 a=1;b=1; h1;
-yb=555; k=2;
+yb=555; k=2;k2=0;
  q=2;
  dx=0;
  dy=0;
- dr=0;time=1;
+ dr=0;ti=0;
  score=0;
  g=0;
  w=1; w1=1;
@@ -347,7 +327,10 @@ bubbleArray=[];
 scoreArray=[];
  k1=0;
  Maxb=2; Maxb1=1;
-
+letters = '0123456789ABCDEF'; color = '#';
+for (var i = 0; i < 6; i++) {
+color += letters[Math.floor(Math.random() * 16)];
+}
 w2=0;
  gameendpic = new Image();
 
