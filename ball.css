@@ -3,7 +3,8 @@ canvas{
 	float:left;
 	background-image:url(back.png);
 }
-. bmi{
+. love{
    
-   color: green;
+   margin=0px;
+   padding=0px;
 }
