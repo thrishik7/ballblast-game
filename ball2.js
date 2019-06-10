@@ -295,7 +295,7 @@ function move(e)
 
 function restart()
 {
-cancelAnimationFrame(cancelMe);
+
 
  xc=500;
 
