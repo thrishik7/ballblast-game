@@ -73,7 +73,7 @@ function animateblock()
 
     w=w+t3;
     k2=10
-    if(w>=30)
+    if(w>=20)
     {
      Maxb++; 
      if(bulletArray.length<Maxb)
@@ -81,7 +81,7 @@ function animateblock()
       bulletArray.push({x:xc+40, y:yb, rb: 5 });
      }
     w=1;
-    if(k1%500==0)
+    if(k1%150==0)
 {
   t3++;
 }
