@@ -64,6 +64,7 @@ function animateblock()
 { 
      cancelMe=requestAnimationFrame(animateblock);
      c.clearRect(0,0, innerWidth, innerHeight);
+    document.getElementById("bmi").style.color = "#ffffff";
      document.getElementById("bmi").innerHTML="HIGH SCORE:"+SCORE;  
      window.addEventListener('keydown',move,false);
      c.fillStyle="orange"; 
