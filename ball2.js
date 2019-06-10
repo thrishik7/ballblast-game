@@ -296,45 +296,53 @@ function move(e)
 function restart()
 {
 
-
+cancelAnimationFrame(cancelMe);
+cancelMe="";
  xc=500;
 
  t=1;
  r=Math.floor((Math.random() * 50) + 30);
-xc1=0;
-cy=530;
-s= Math.floor((Math.random() * 120) + 20);
+ xc1=0;
+ cy=530; s= Math.floor((Math.random() * 120) + 20);
 if(s%2!=0)
       s++;
 cannon = new Image();
-blast = new Image();
+ blast = new Image();
 blast.src='blast.png'
-cannon.src='cannon.png'; h =Math.floor((Math.random()*200)+40);
- yc1=h;
-t=2;t3=0;
-i=0;
-d=620;
-a=1;b=1; h1;
-yb=555; k=2;k2=0;
+cannon.src='cannon.png';
+ letters = '0123456789ABCDEF';
+ color = '#';
+for (var j = 0; j < 6; j++) {
+color += letters[Math.floor(Math.random() * 16)];
+}
+
+ h =Math.floor((Math.random()*200)+40);
+  yc1=h;
+ t=2;
+ i=0;
+ d=620;
+ a=1;
+ b=1; 
+ yb=555;
+ k=2;
  q=2;
  dx=0;
  dy=0;
- dr=0;ti=0;
+ ti=0;
+ dr=0;
  score=0;
  g=0;
  w=1; w1=1;
-bulletArray=[];
-bubbleArray=[];
-scoreArray=[];
- k1=0;
+ t3=1;
+ bulletArray=[];
+  bubbleArray=[];
+ scoreArray=[];
+ k1=1; k2=0;
  Maxb=2; Maxb1=1;
-letters = '0123456789ABCDEF'; color = '#';
-for (var i = 0; i < 6; i++) {
-color += letters[Math.floor(Math.random() * 16)];
-}
-w2=0;
- gameendpic = new Image();
-
+SCORE=0;
+ w2=0; gameendpic = new Image();
+gameendpic.src='gameovergif.gif';
+   
 animateblock();
 
 }
