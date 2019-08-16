@@ -3,7 +3,7 @@ var c = canvas.getContext('2d');
 
 var cancelMe="";
 c.globalCompositerOperation='destination-over';
- var xc=500;
+ var xc=-500;
 
  var t=1;
  var r=Math.floor((Math.random() * 50) + 30);
@@ -298,7 +298,7 @@ function restart()
 
 cancelAnimationFrame(cancelMe);
 cancelMe="";
- xc=500;
+ xc=-500;
 
  t=1;
  r=Math.floor((Math.random() * 50) + 30);
